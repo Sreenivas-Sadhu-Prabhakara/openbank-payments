@@ -1,5 +1,7 @@
 # openbank-payments
 
+[![CI](https://github.com/Sreenivas-Sadhu-Prabhakara/openbank-payments/actions/workflows/ci.yml/badge.svg)](https://github.com/Sreenivas-Sadhu-Prabhakara/openbank-payments/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![Go](https://img.shields.io/badge/Go-1.25-00ADD8?logo=go&logoColor=white)](https://go.dev)
+
 The **Payments (PIS)** microservice — the BIAN *Payment Order / Payment Execution* service domain, exposing the OBIE **PISP** domestic-payment APIs.
 
 A payment can only be created from an **authorised** `domestic-payment` consent. The service validates the consent against the consent service, checks the request `Initiation` matches the consent exactly, enforces the mandatory `x-idempotency-key`, and then marks the single-use consent `Consumed`.
