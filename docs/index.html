@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Payments — OBIE · PISP (Payment Initiation) · openbank-bian</title>
+<meta name="description" content="Payments: the OBIE · PISP (Payment Initiation) service in openbank-bian, a runnable UK Open Banking (OBIE) reference in Go. Consent-first, validates against the Consent service."/>
+<meta name="keywords" content="Open Banking, OBIE, OBIE · PISP (Payment Initiation), Payments microservice, BIAN, Go, PISP, consent, openbank-payments"/>
+<meta name="author" content="Sreenivas Sadhu Prabhakara"/>
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+<meta name="theme-color" content="#0071e3"/>
+<link rel="canonical" href="https://sreenivas-sadhu-prabhakara.github.io/openbank-payments/"/>
+<meta property="og:site_name" content="openbank-bian"/>
+<meta property="og:title" content="Payments — OBIE · PISP (Payment Initiation)"/>
+<meta property="og:description" content="The Payment Initiation Service Provider (PISP) — turns a single-use domestic-payment consent into an idempotent payment."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://sreenivas-sadhu-prabhakara.github.io/openbank-payments/"/>
+<meta property="og:locale" content="en_GB"/>
+<meta property="og:image" content="https://sreenivas-sadhu-prabhakara.github.io/openbank-payments/assets/og.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="Payments — OBIE · PISP (Payment Initiation) microservice in openbank-bian."/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Payments — OBIE · PISP (Payment Initiation)"/>
+<meta name="twitter:description" content="The Payment Initiation Service Provider (PISP) — turns a single-use domestic-payment consent into an idempotent payment."/>
+<meta name="twitter:image" content="https://sreenivas-sadhu-prabhakara.github.io/openbank-payments/assets/og.png"/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareSourceCode",
+      "@id": "https://sreenivas-sadhu-prabhakara.github.io/openbank-payments/#software",
+      "name": "openbank-payments",
+      "description": "The Payments microservice implements the OBIE Payment Initiation API in the PISP role. It consumes an authorised, single-use domestic-payment consent and creates an idempotent domestic payment, marking the consent Consumed so it cannot be replayed.",
+      "url": "https://sreenivas-sadhu-prabhakara.github.io/openbank-payments/",
+      "codeRepository": "https://github.com/Sreenivas-Sadhu-Prabhakara/openbank-payments",
+      "programmingLanguage": "Go",
+      "runtimePlatform": "Go 1.25",
+      "license": "https://opensource.org/licenses/MIT",
+      "author": {
+        "@type": "Person",
+        "name": "Sreenivas Sadhu Prabhakara",
+        "url": "https://github.com/Sreenivas-Sadhu-Prabhakara"
+      },
+      "isPartOf": {
+        "@type": "SoftwareApplication",
+        "name": "openbank-bian",
+        "url": "https://sreenivas-sadhu-prabhakara.github.io/openbank-bian/"
+      },
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Open Banking"
+        },
+        {
+          "@type": "Thing",
+          "name": "OBIE · PISP (Payment Initiation)"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "openbank-bian",
+          "item": "https://sreenivas-sadhu-prabhakara.github.io/openbank-bian/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Payments service",
+          "item": "https://sreenivas-sadhu-prabhakara.github.io/openbank-payments/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a PISP (Payment Initiation Service Provider)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A PISP is a regulated Open Banking role that, with the customer’s consent, initiates a payment directly from the customer’s bank account through standard APIs — an alternative to card rails."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is a payment kept from being made twice?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The domestic-payment consent is single-use: on success this service marks it Consumed, and payment creation is idempotent, so a retried request returns the same payment rather than a second one."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it production-ready?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No — it is an educational reference with the FAPI security profile stubbed and no certification. Do not use it for live payments."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+:root{--bg:#fff;--bg2:#f5f5f7;--ink:#1d1d1f;--ink2:#6e6e73;--ink3:#86868b;--line:#d2d2d7;--line2:#e8e8ed;--blue:#0071e3;--blueh:#0077ed;--sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Helvetica,Arial,sans-serif;--mono:ui-monospace,"SF Mono",Menlo,monospace}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.5;letter-spacing:-.01em;-webkit-font-smoothing:antialiased}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px}
+.nav{position:sticky;top:0;z-index:9;height:48px;background:rgba(255,255,255,.8);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line2)}
+.nav .r{max-width:960px;margin:0 auto;padding:0 22px;height:48px;display:flex;align-items:center;justify-content:space-between}
+.nav .b{font-size:15px;font-weight:600}.nav .b .o{color:var(--blue)}
+.nav .l a{color:var(--ink2);font-size:13px;margin-left:22px}
+.hero{text-align:center;padding:84px 0 46px;background:radial-gradient(120% 90% at 50% -10%,#f2f7ff 0%,#fff 46%)}
+.eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:1px;color:var(--ink2);text-transform:uppercase}
+h1{font-size:76px;line-height:1.02;letter-spacing:-2px;margin:14px 0 6px;background:linear-gradient(120deg,#0071e3,#2997ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.port{font-family:var(--mono);color:var(--blue);font-size:16px;margin-bottom:16px}
+.sub{font-size:22px;color:var(--ink2);max-width:44ch;margin:0 auto 26px}
+.cta a{display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;font-size:16px;padding:11px 22px;border-radius:980px;margin:0 6px}
+.cta a.ghost{background:var(--bg2);color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:26px 0 0}
+.chip{font-family:var(--mono);font-size:13px;color:var(--ink);background:var(--bg2);border:1px solid var(--line2);border-radius:980px;padding:7px 14px}
+.chip-none{color:var(--ink3)}
+section{padding:52px 0;border-top:1px solid var(--line2)}
+section.alt{background:var(--bg2)}
+h2{font-size:34px;letter-spacing:-1px;margin:0 0 8px}
+.lead{color:var(--ink2);font-size:19px;max-width:60ch;margin:0 0 26px}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line2);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink3)}
+td code,.m{font-family:var(--mono);font-size:13px}
+td .meth{display:inline-block;min-width:52px;font-weight:600;color:var(--blue)}
+pre{background:#1d1d1f;color:#f5f5f7;border-radius:14px;padding:20px 22px;overflow:auto;font-family:var(--mono);font-size:14px;line-height:1.7}
+pre .c{color:#86868b}
+.faq details{border-bottom:1px solid var(--line2)}
+.faq summary{list-style:none;cursor:pointer;padding:20px 44px 20px 2px;position:relative;font-size:20px;font-weight:600}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:26px;font-weight:300;color:var(--ink3)}
+.faq details[open] summary::after{content:"\2013"}
+.faq .a{padding:0 2px 22px;color:var(--ink2);max-width:70ch}
+.rel{display:flex;flex-wrap:wrap;gap:10px}
+.rel a{font-family:var(--mono);font-size:13px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+footer{padding:44px 0 60px;border-top:1px solid var(--line2);color:var(--ink3);font-size:13px}
+footer .disc{margin-top:12px;max-width:80ch;line-height:1.6}
+@media(max-width:640px){h1{font-size:52px}.nav .l a:first-child{display:none}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="r"><div class="b"><span class="o">●</span> openbank-bian / openbank-payments</div><div class="l"><a href="#run">Run</a><a href="#faq">FAQ</a><a href="https://sreenivas-sadhu-prabhakara.github.io/openbank-bian/">All services ↗</a></div></div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">OBIE · PISP (Payment Initiation)</div>
+  <h1>Payments</h1>
+  <div class="port">:8083 · openbank-payments</div>
+  <p class="sub">The Payment Initiation Service Provider (PISP) — turns a single-use domestic-payment consent into an idempotent payment.</p>
+  <div class="cta"><a href="https://github.com/Sreenivas-Sadhu-Prabhakara/openbank-payments">View on GitHub</a><a class="ghost" href="https://sreenivas-sadhu-prabhakara.github.io/openbank-bian/">The whole estate ↗</a></div>
+</div></header>
+
+<section><div class="wrap">
+  <h2>What it is</h2>
+  <p class="lead">The Payments microservice implements the OBIE Payment Initiation API in the PISP role. It consumes an authorised, single-use domestic-payment consent and creates an idempotent domestic payment, marking the consent Consumed so it cannot be replayed.</p>
+  <div class="chips"><strong style="align-self:center;font-size:13px;color:var(--ink3);letter-spacing:.04em">DEPENDS ON</strong> <a class="chip" href="https://sreenivas-sadhu-prabhakara.github.io/openbank-consent/">↳ openbank-consent</a></div>
+  
+</div></section>
+
+<section class="alt"><div class="wrap">
+  <h2>Key endpoints</h2>
+  <p class="lead">Speaks the OBIE contract on the wire. A selection of the endpoints this service exposes:</p>
+  <table><thead><tr><th>Method</th><th>Path</th><th>Purpose</th></tr></thead><tbody>
+  <tr><td><span class="meth">POST</span></td><td><code>/domestic-payments</code></td><td>Initiate a domestic payment (idempotent) from an authorised consent</td></tr>
+  <tr><td><span class="meth">GET</span></td><td><code>/domestic-payments/{id}</code></td><td>Read a payment’s status</td></tr>
+  </tbody></table>
+</div></section>
+
+<section id="run"><div class="wrap">
+  <h2>Run it — zero infrastructure</h2>
+  <p class="lead">Clone the repo and start the service with an in-memory store. No database required to try it.</p>
+<pre><span class="c"># clone and run (in-memory store, no infra)</span>
+git clone https://github.com/Sreenivas-Sadhu-Prabhakara/openbank-payments.git
+cd openbank-payments && go run .
+
+<span class="c"># it is now serving OBIE on :8083</span>
+curl localhost:8083/health</pre>
+</div></section>
+
+<section id="faq" class="alt"><div class="wrap">
+  <h2>FAQ</h2>
+  <div class="faq">
+  <details><summary>What is a PISP (Payment Initiation Service Provider)?</summary><div class="a">A PISP is a regulated Open Banking role that, with the customer’s consent, initiates a payment directly from the customer’s bank account through standard APIs — an alternative to card rails.</div></details>
+  <details><summary>How is a payment kept from being made twice?</summary><div class="a">The domestic-payment consent is single-use: on success this service marks it Consumed, and payment creation is idempotent, so a retried request returns the same payment rather than a second one.</div></details>
+  <details><summary>Is it production-ready?</summary><div class="a">No — it is an educational reference with the FAPI security profile stubbed and no certification. Do not use it for live payments.</div></details>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Explore the estate</h2>
+  <p class="lead">openbank-bian rebuilds UK Open Banking as five consent-first services. Explore the rest:</p>
+  <div class="rel">
+    <a href="https://sreenivas-sadhu-prabhakara.github.io/openbank-bian/">▲ openbank-bian — overview</a>
+    <a href="https://sreenivas-sadhu-prabhakara.github.io/openbank-consent/">Consent :8081</a>
+    <a href="https://sreenivas-sadhu-prabhakara.github.io/openbank-accounts/">Accounts :8082</a>
+    <a href="https://sreenivas-sadhu-prabhakara.github.io/openbank-funds/">Funds :8084</a>
+    <a href="https://sreenivas-sadhu-prabhakara.github.io/openbank-party/">Party :8085</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div>openbank-bian · openbank-payments · UK Open Banking (OBIE) × BIAN × Go — a teaching reference.</div>
+  <div class="disc"><strong>Disclaimer.</strong> Independent, educational reference implementation. Not production software, and not affiliated with, endorsed by, or certified against OBIE / Open Banking Limited or BIAN. The FAPI security profile (OAuth2/OIDC, MTLS, signed request objects) is intentionally stubbed. Do not use as-is for real customer data or live payments.</div>
+</div></footer>
+</body>
+</html>
